@@ -1,0 +1,27 @@
+{
+  "httpServer":{
+    "host": "0.0.0.0",
+    "port": 8085
+  },
+  "jdbc":{
+    "driver_class": "org.sqlite.JDBC",
+    "url": "jdbc:sqlite:data.db",
+    "initial_pool_size": 1,
+    "max_pool_size": 1,
+    "min_pool_size": 1
+  },
+  "agent": {
+    "host": "127.0.0.1",
+    "port": 8086,
+    "connect.route": "/",
+    "relay.route": "/",
+    "run.update.route": "/update"
+  },
+  "feature.stream.delay": 1500,
+  "workshop_addon_id": "1976046474",
+  "bypass.agent.ready.between.games": true,
+  "run.webhook.prefix": "/run/webhooks/",
+  "run.webhook.suffix": "/",
+  "overrideAgent": true,
+  "dotaBetaFolderPath":"C:\\PROGRA~2\\Steam\\steamapps\\common\\DOTA2B~1\\"
+}
