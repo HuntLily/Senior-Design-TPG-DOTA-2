@@ -1,0 +1,20 @@
+Wednesday, 3/25
+
+3:00pm - Meeting started
+
+We recapped our last meeting, and discussed the progress we made during it.
+Mostly, this was going back through the GitHub repository that we successfully downloaded, and ran the test AI that was given to us. 
+Once we made sure that the test AI was working properly, and that everyone had access to the same files via the GitHub, we went back over our basics. The goal of this project, our schedule, and so on.
+According to our schedule, the most recent activity we should have finished is Setting up the external memory. 
+
+Our goal for this meeting is to download the Anaconda python editor so we can look at the code we’ve been given via GitHub and determine if we have the code we need to modify in order to make our own AI, rather than simply running the practice AI we’ve been given. If we cannot determine this, either because the code has not been given, or we are unable to decide what code we need to modify, I will email the organizers asking them for assistance with our next step.
+
+We also made our GitHub repository public, and accessible via this link here. Professor Zhao should be able to use this link to clone the repository herself.
+
+At 3:45, we felt reasonably sure we had found the code we’d be modifying to create our own AI. 
+At 4:30, we asked the organizer for some information and where able to put together what all we have to do for the project left.
+Step 1: We start from scratch with a new python file
+Step 2: We use the code given in the examples as our framework. The code in the examples is not complete however, so our first challenge will be completing this code
+Step 3: Once the code is complete, we will have built our own AI, which we already know how to run using the Breezy Server (thanks to our efforts over the past 3 weeks). 
+Step 4: We run the Agent through the server to test its fitness function. It should be evident after a few games if it is learning the way we want it to. We then refine the fitness function further
+Step 5: We let the Agent run through many games to learn (this part will probably be after graduation). Finally, we submit the agent to the competition once we feel it is ready

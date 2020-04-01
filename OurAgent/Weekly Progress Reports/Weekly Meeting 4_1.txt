@@ -1,0 +1,32 @@
+Dota II TPG Group Meeting
+4/1/2020
+
+
+
+Meeting start at 4:15pm
+
+We spent the first 20 minutes catching up and opening files and such, finding our feet and such. We decided that the first logical step 
+was to find the python files we’d be using and read through them to understand them.
+
+
+It took a short amount of time to find the files we’d talked about last time, but we found them in the PyTPG folder. We opened them 
+up in IntelliJ using the Python addon 'PyCharm' (Christian had installed it before-hand, the rest of us will download it on our own time). 
+
+
+There were 6 files to read through (agent, learner, program, team, trainer, and utils.py) and we started with agent. 
+
+
+We spend about an hour just going through the files ‘agent.py’, ‘learner.py’, ‘program.py’, 'utils', and part of ‘team.py’
+
+In the 'learner' file, which controls the evolution of the AI, we came accross the Mutate function, which is what what actually drives the
+learning/evolution in the AI. It was, unsurprisingly, very complex. We decided that, since it is unlikely that we will have to modify it 
+for ourselves that we could come back to it once we'd understood more (hopefully).
+
+At the start of 'program.py' there are a trio of attributes that we did not fully understand either. They seemed to deal with the storage
+or memory of the AI. ALso in 'program.py' in the very large Execute method, we found code that suggested that improvements ought to be made
+to make the method more flexible with different variables (the section had many constants that could be replaced with variables).
+
+
+Next time, when we go through trainer.py, we're going to have either a document, or paint or something for a visual representation
+of each class, its methods, and the associated variables for each, so we know what is referencing what, and can get a (hopefully) clearer
+picture of the TPG as a whole rather than just its parts.
