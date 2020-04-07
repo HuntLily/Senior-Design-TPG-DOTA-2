@@ -1,0 +1,21 @@
+Dota 2 Weekly report
+4/6/2020
+
+Meeting start at 6:55pm
+
+Started by discussing our current status and goals for the project. 
+
+Going through the trainer.py class that we left off on last time. We finished by 7:45pm, and went on to reading through the Readme.txt files
+to help us understand what to *do* with the files now that we knew what they *did*.
+
+Reading through the Readme files helped us understand a little more. We used some of the code and imported some of their files to our Agent.
+
+Our goals for next time are to read through the examples given to us so we know which methods to call in our own Agent.py. We also
+mean to find where the files store their save data. 
+
+Gameplan going forward:
+* find methods in /tpg folder that are necessary for the Agent to perform
+* import these methods to our Agent.py file so that it can perform these actions
+* run our Agent in Dota 2 where it will save the data from its runs to somewhere, and over time improve its performance
+* if we notice that the agent is learning slowly or learning the wrong things, we can adjust the parameters of the methods
+we called in our Agent.py to change the learning behavior of the AI.
