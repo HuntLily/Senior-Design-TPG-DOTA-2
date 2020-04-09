@@ -1,0 +1,49 @@
+weekly meeting 4/8/2020
+
+Meeting start at 7:00pm
+
+Goal meetings
+* Start coding agent
+* Look through their agent_server_tpg.py and compare it to agen_server_random.py to see what it's doing, so we can write our own without just copying it
+* note for later: be sure to credit the team that we got this code from, since we're copying a lot of it.
+
+Went through each line and decided which ones we want to copy, which ones we will change, and what they are/do.
+Lines:
+1-22: copy (imports and server connection)
+23-26: copy for now (arguments, can change pop size as needed)
+28: copy (passing arguments)
+39-41: change (this is the fitness function, one of the things we need to make ourselves)
+	-figure out what the indeces in the state[] are for the other actions to reward the bot.
+	-possibly ask the organizers what the order of indeces in state[], or look for documentation outside the code
+46-48: copy (http request helper)
+53-59: copy (sends an action to the game for the ai to perform)
+64-67: copy for now (used just for testing connection, can change or delete later)
+-reading through 72-196
+75-76: copy (attributes we'll need)
+-reading through 78-179 (this statement runs when the game ends)
+78-91: copy (setting up the attributes and methods)
+94-97: copy (calling the fitness function)
+100-124: copy for now, change later (webhook is for multiple games, which we can change. This will be a major part of the project)
+124-129: copy (global variables)
+135-137: copy (checks to see if AI is done training, a completed version)
+142-145: copy (rewards the ai based on its fitness function)
+148-149: copy (logs the current score the ai has earned via the ff)
+151-158: copy (starts a new generation of the A.I.)
+162: copy (creates the new agents for the new generation)
+167-174: copy (builds url to server)
+178: copy? ("sends whatever to server" might break if we don't copy, and we don't know what it does, so better copy to be safe)
+	-we suspect that we may have to replace the '42' with 'getFitnessFunction', but aren't sure
+	-we saw in the logs that there were other "string":number things like the 42, which we may need to find in the code and change as well
+180-195: copy for now (called while game is in progress, gives features from the game for the agent. Double check to be sure its complete
+and nothing needs to be added. If anything is missing or not needed, then change this segment)
+197-209: copy (setting up attributes and methods)
+213: change (make our own team name here)
+214: copy (references the number of games to play, which we change elsewhere)
+217-239: copy (declarations and stuff)
+242-245: copy (updating attributes we've sent elsewhere)
+248-256: copy (this sets the tpg to default values)
+259-261: copy (having a log will help us troubleshoot and track our progress)
+264-265: copy (this is what keeps the program running until the ai is done or crashes)
+
+At 7:30 we took a short break to watch the AI play a few rounds to see what we'd be working with. It was cool.
+
