@@ -47,3 +47,7 @@ and nothing needs to be added. If anything is missing or not needed, then change
 
 At 7:30 we took a short break to watch the AI play a few rounds to see what we'd be working with. It was cool.
 
+at 8:30 we were wrapping up and deciding our goals for next meeting.
+We will start by copying all the code we've committed to copying.
+We'll find the indeces for state[] so we can write our own fitness function next week.
+Lastly, test our Agent.py with the server to see if it runs. 
