@@ -42,10 +42,10 @@ Handles HTTP requests from the dota server.
 class ServerHandler(BaseHTTPRequestHandler):
 
     """
-    Get the fitness from the final game state.
+    Get the fitness from the final game state. add a parameter to get death and kills
     """
     def getFitness(self, state, win):
-        # incomplete, missing kills and not dead bonus, denies
+        # incomplete, missing kills and not dead bonus
         return 10*state[24] + 15*state[25] + state[23] + 2000*win
 
     """
