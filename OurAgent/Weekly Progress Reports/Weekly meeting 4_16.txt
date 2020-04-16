@@ -1,0 +1,35 @@
+4/16/2020
+
+The weekly meeting this week had to be rescheduled due to exams in our other classes. 
+
+Meeting began at 12:40pm
+
+Our goals for this meeting as set last week: copy the code we said we'd copy, and find the indices for the state[] array so we can use
+that to make our own fitness function
+
+Began by copying over the code we said we would copy last week, and marking the code we said we'd change. 
+
+Scheduled an extra meeting for Friday at noon
+
+Held our meeting with Professor Zhao at 1pm, and finished at 1:20pm. We got back to our meeting right after.
+
+We began looking for the state[] array, by modifying the code to print off all of the states once the game is over. We were unable to find
+it this way though, and asked the organizers if they had further documentation.
+
+They directed us to the swagger file, where we found it immediately.
+
+We went through the 309 indices of state[], and pared it down to the most basic actions we needed rewards for. One of these was 'kills',
+that is, rewarding the AI for getting a kill on the enemy team. This is not one of the lited state[] indices, so we plan on using the 
+'radiantkills' from CompletedRun to reward the Agent once the game is complete. We can also use deaths counter from CompletedRun to 
+penalize the bot as well.
+
+However, before we went too far down that rabbit hole, we shifted our focus to making sure the Agent runs on the Breezy Server.
+Currently, both our Agent, and the Agent we based our code from, do not run on the server. A different, shorter example that was given
+to us *does* run on the server though, so we are comparing the two.
+
+We started by moving our Agent to the folder with the tpg. We encountered a *new* error, which was some nice progress.
+
+We left off on the new error. Currently numpy was not being found. 
+
+Tomorrow we'll pick up here. Our goal is to get our agent running on the server, and if we have time, to build our rough draft of a fitness
+function.
