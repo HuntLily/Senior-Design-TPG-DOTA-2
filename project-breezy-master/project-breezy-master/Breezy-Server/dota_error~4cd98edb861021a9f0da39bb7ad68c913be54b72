@@ -1,0 +1,15 @@
+Qt: Untested Windows version 10.0 detected!
+Fontconfig warning: "C:\PROGRA~2\Steam\steamapps\common\DOTA2B~1\game\core\panorama\fonts\conf.d/41-repl-os-win.conf", line 148: Having multiple values in <test> isn't supported and may not work as expected
+Fontconfig warning: "C:\PROGRA~2\Steam\steamapps\common\DOTA2B~1\game\core\panorama\fonts\conf.d/41-repl-os-win.conf", line 160: Having multiple values in <test> isn't supported and may not work as expected
+Using breakpad crash handler
+Setting breakpad minidump AppID = 375360
+Forcing breakpad minidump interfaces to load
+Looking up breakpad interfaces from steamclient
+Calling BreakpadMiniDumpSystemInit
+Forcing breakpad minidump interfaces to load
+Looking up breakpad interfaces from steamclient
+Calling BreakpadMiniDumpSystemInit
+Setting breakpad minidump AppID = 570
+Looking up breakpad interfaces from steamclient
+Calling BreakpadMiniDumpSystemInit
+Setting breakpad minidump AppID = 375360

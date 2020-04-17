@@ -1,0 +1,31 @@
+4/17/2020
+
+Meeting began at 1:45pm
+
+Christian worked on the project on his own for a little bit, and got some progress on where we left off.
+
+The agent connects to the Breezy Server, but the trainer is acting up. 
+
+Goals for today are to get the agent running in the game without errors and hopefully to have a rough draft of the fitness function.
+
+We also set up our next meeting for Mon, 4-6pm.
+
+At 1:55pm, we got back to work looking at the current error our Agent is generating. The error we are getting is that Trainer is not
+recognized, even though we are importing the full folder. 
+
+We eventually discovered it was a problem with numpy again, and after some research, we found an older version of numpy and numba to
+install that didn't give errors, solving our problem.
+
+To test, we ran a game with our Agent, and it doesn't do anything in the game. Dang. Specifically, the Agent should be choosing its 
+character and skipping straight into the game, but it does not select a character or act once the game begins.
+
+We also tested the example Agent, but it also does not do anything.
+
+We went back to comparing our Agent to the RandomAgent example (which does work, but does not use a tpg).
+
+Unfortunately, the RandomAgent also does nothing now. At 2:40, we re-downloaded some of their files, but this did not help either.
+
+We contacted the organizers for help, and they gave some help, and we got the Random Agent working again. We applied the changes to our
+Agent to test it as well, and it worked!
+
+
