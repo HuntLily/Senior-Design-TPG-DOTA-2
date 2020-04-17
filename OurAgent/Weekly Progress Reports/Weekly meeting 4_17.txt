@@ -1,0 +1,17 @@
+4/17/2020
+
+Meeting began at 1:45pm
+
+Christian worked on the project on his own for a little bit, and got some progress on where we left off.
+
+The agent connects to the Breezy Server, but the trainer is acting up. 
+
+Goals for today are to get the agent running in the game without errors and hopefully to have a rough draft of the fitness function.
+
+We also set up our next meeting for Mon, 4-6pm.
+
+At 1:55pm, we got back to work looking at the current error our Agent is generating. The error we are getting is that Trainer is not
+recognized, even though we are importing the full folder. 
+
+
+
