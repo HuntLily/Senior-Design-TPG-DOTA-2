@@ -1,24 +1,12 @@
-import sys
-from tpg.trainer import Trainer
-from tpg.agent import Agent
 from http.server import BaseHTTPRequestHandler, HTTPServer
 import json
 from optparse import OptionParser
 import threading
 import requests
-import datetime
+from tpg.trainer import Trainer
+from tpg.agent import Agent
 import numpy as np
-sys.path.append('/src/validation/')
-
-
-"""
-lines to change:
-39-41
-64-67
-178
-180-195
-213
-"""
+import datetime
 
 parser = OptionParser()
 # the address of this agent server
@@ -46,7 +34,7 @@ Handles HTTP requests from the dota server.
 class ServerHandler(BaseHTTPRequestHandler):
 
     """
-    Get the fitness from the final game state. add a parameter to get death and kills
+    Get the fitness from the final game state.
     """
     def getFitness(self, state, win):
         # incomplete, missing kills and not dead bonus
@@ -165,7 +153,7 @@ class ServerHandler(BaseHTTPRequestHandler):
                     print("On to generation #{}.".format(curGen))
                     
                     # start new generation
-                    trainer1.evolve(tasks=["dota"])
+                    trainer.evolve(tasks=["dota"])
                     # get new agents
                     agents = trainer.getAgents(skipTasks=["dota"])
                     
@@ -276,4 +264,3 @@ if __name__ == "__main__":
     while True:
         pass
     
-
