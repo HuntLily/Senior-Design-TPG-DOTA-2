@@ -1,3 +1,4 @@
+import sys
 from tpg.trainer import Trainer
 from tpg.agent import Agent
 from http.server import BaseHTTPRequestHandler, HTTPServer
@@ -5,8 +6,11 @@ import json
 from optparse import OptionParser
 import threading
 import requests
-import numpy as np
 import datetime
+import numpy as np
+sys.path.append('/src/validation/')
+
+
 """
 lines to change:
 39-41
@@ -161,7 +165,7 @@ class ServerHandler(BaseHTTPRequestHandler):
                     print("On to generation #{}.".format(curGen))
                     
                     # start new generation
-                    trainer.evolve(tasks=["dota"])
+                    trainer1.evolve(tasks=["dota"])
                     # get new agents
                     agents = trainer.getAgents(skipTasks=["dota"])
                     
