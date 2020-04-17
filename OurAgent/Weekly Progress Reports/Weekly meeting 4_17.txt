@@ -28,4 +28,7 @@ Unfortunately, the RandomAgent also does nothing now. At 2:40, we re-downloaded 
 We contacted the organizers for help, and they gave some help, and we got the Random Agent working again. We applied the changes to our
 Agent to test it as well, and it worked!
 
-
+Having gotten the agent to work (although it currently just attack moves down the lane), we called the meeting there. Next meeting, we will
+create a barebones fitness function and run the program several times. We will also make sure that it is saving what it learns between
+sessions. We should also check with the organizers what we are handing them. Are we giving them our Agent file, or some memory of what the
+agent has learned? 
