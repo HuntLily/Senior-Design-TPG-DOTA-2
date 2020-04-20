@@ -9,20 +9,28 @@ from us, so unless further complications arise, we believe we are ready to move 
 designing and improving the fitness function.
 
 Today we will start by creating a fitness function from scratch. To do this, first we listed the actions we wanted to reward/penalize.
-* kills												[completed run]
-* deaths											[completed run]
-* last hits											[24]
-* denies											[25]
-* friendly tower health										[58/59]
-* enemy tower health										[64/65]
-* wins/losses											[completed run]
-* net worth											[23]
-* ai health% is higher than opp health%								[2/3 vs 32/33]
+* kills												[completed run] * 500
+* deaths											[completed run] * 500/250
+* last hits											[24] * 10
+* denies											[25] * 15
+* friendly tower health/max vs enemy tower health/max						[58/59 vs 64/65] * 200 (2 points per %)
+* wins/losses											[completed run] * 2000
+* net worth											[23] * 1 
+* ai health% is higher than opp health%								[2/3 vs 32/33] * 500 (5 points per %)
 	* this should scale based on the difference between %'s
-* if ai level is higher than opp level								[1 vs 31]
-* if the ai wins, a bonus for winning as close to 20 mins (subject to change) as possible	[56]
+* if ai level is higher than opp level								[1 vs 31] * 100
+* if the ai wins, a bonus for winning as close to 20 mins (subject to change) as possible	[56] * 1000
 	* this should also be scalar of course
 
 at 5:15pm, we had the different states we wanted to include in the fitness function.
 
-We also found that we have to write our own code for storing the ai as its learning. 
+We also found that we have to write our own code for storing the ai as its learning. Questions for later, and possibly for the 
+organizer.
+
+This is the example fitness function that was included in the stub:
+10*state[24/last hits] + 15*state[25/denies] + state[23/net worth] + 2000*win
+
+Because there were no penalties in their example, we will try to follow suit and only reward the ai at first. This may change as we 
+experiment later.
+
+
