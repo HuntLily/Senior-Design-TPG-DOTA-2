@@ -33,4 +33,6 @@ This is the example fitness function that was included in the stub:
 Because there were no penalties in their example, we will try to follow suit and only reward the ai at first. This may change as we 
 experiment later.
 
+We put in our first fitness function based on the numbers noted above.
 
+Goals for next time: test the new fitness function, clean out our repository.
