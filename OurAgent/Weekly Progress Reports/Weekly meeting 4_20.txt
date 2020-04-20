@@ -1,0 +1,28 @@
+weekly meeting April 20th, 2020
+
+Meeting start at 4:45pm
+
+We're gonna try and keep this meeting fairly short since it is Ethan's girlfriend's birthday today.
+
+When we last left off, we are pretty sure we got our Agent working in the game correctly. It was taking actions without any prompting
+from us, so unless further complications arise, we believe we are ready to move on to the next and final step of the project:
+designing and improving the fitness function.
+
+Today we will start by creating a fitness function from scratch. To do this, first we listed the actions we wanted to reward/penalize.
+* kills												[completed run]
+* deaths											[completed run]
+* last hits											[24]
+* denies											[25]
+* friendly tower health										[58/59]
+* enemy tower health										[64/65]
+* wins/losses											[completed run]
+* net worth											[23]
+* ai health% is higher than opp health%								[2/3 vs 32/33]
+	* this should scale based on the difference between %'s
+* if ai level is higher than opp level								[1 vs 31]
+* if the ai wins, a bonus for winning as close to 20 mins (subject to change) as possible	[56]
+	* this should also be scalar of course
+
+at 5:15pm, we had the different states we wanted to include in the fitness function.
+
+We also found that we have to write our own code for storing the ai as its learning. 
