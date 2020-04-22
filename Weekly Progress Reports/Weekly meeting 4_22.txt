@@ -1,0 +1,14 @@
+weekly meeting April 22th, 2020
+
+Meeting start at 6:15pm
+
+Today, we'll put some small touches on the fitness function that we didn't get to last time (kills and deaths specifically), as well as
+some house keeping. We're going to be going through our rather messy folders and cleaning out files we don't need, duplicates that were
+made, and organizing them so that files we need are easier to find.
+
+The other major goal for us right now is to find where the Agent's learning is stored, and what files specifically we'll be submitting
+at the end of the competition. Are we submitting them an Agent that has already learned, or will they be taking our agent file we've
+designed and train it themselves? We asked the organizers.
+
+He got back to us saying we will submit a short paper (1-2 pages) and an agent package that includes your agent files.
+
