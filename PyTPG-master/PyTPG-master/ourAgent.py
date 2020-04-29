@@ -35,7 +35,7 @@ Arguments for TPG setup.
 # population size
 parser.add_option("-P", "--pop", type="int", dest="popSize", default=200)
 parser.add_option("-g", "--gens", type="int", dest="gens", default=100)
-parser.add_option("-r", "--gameReps", type="int", dest="gameReps", default=3)
+parser.add_option("-r", "--gameReps", type="int", dest="gameReps", default=5)
 
 (opts, args) = parser.parse_args()
 
