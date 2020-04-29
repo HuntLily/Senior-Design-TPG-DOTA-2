@@ -1,0 +1,16 @@
+weekly meeting April 29th, 2020
+
+Meeting start at 5pm
+
+Due to having a lot of work in other classes (namely Software Engineering) we elected to focus elsewhere for the first half of this week,
+and focus on this project for the back half of the week. 
+
+Our goals for this week are to find where the Agent's memories are stored, and create documentation for our project for both the 
+Senior Design Project as well as the GECCO Competition. 
+
+For the paper, it needs to be a few pages long describing the project, what we did, what we learned, etc.
+
+For today, we should figure out the memories question (finally), make any last-minute adjustments, and create the paper. We will have a
+team meeting on Friday where we will have the AI running in the background while we work on the paper.
+
+As the AI runs, we should record statistics showing its growth over the course of multiple games/sessions.
