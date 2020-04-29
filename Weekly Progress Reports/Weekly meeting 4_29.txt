@@ -1,0 +1,11 @@
+weekly meeting April 29th, 2020
+
+Meeting start at 5pm
+
+Due to having a lot of work in other classes (namely Software Engineering) we elected to focus elsewhere for the first half of this week,
+and focus on this project for the back half of the week. 
+
+Our goals for this week are to find where the Agent's memories are stored, and create documentation for our project for both the 
+Senior Design Project as well as the GECCO Competition. 
+
+ 
