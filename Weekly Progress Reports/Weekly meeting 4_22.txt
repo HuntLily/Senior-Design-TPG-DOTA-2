@@ -12,3 +12,4 @@ designed and train it themselves? We asked the organizers.
 
 He got back to us saying we will submit a short paper (1-2 pages) and an agent package that includes your agent files.
 
+In the meantime, we went ahead and added the kills and deaths to the fitness function.
