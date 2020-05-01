@@ -141,6 +141,8 @@ class ServerHandler(BaseHTTPRequestHandler):
                 global gameReps
                 global curGen
                 global logName
+                global pyskerLevel
+                global IQ
                 
                 """
                 Prepare next TPG agent (or generation if required).
@@ -208,6 +210,9 @@ class ServerHandler(BaseHTTPRequestHandler):
             action = agent.act(np.array(features, dtype=np.float64))
             self.postResponse(json.dumps({"actionCode":action}))
 
+            agent.saveToFile(self,"Magnus")
+
+
 if __name__ == "__main__":
     """
     Sets up and starts the Agent server and triggers the start of a run on the 
@@ -224,7 +229,7 @@ if __name__ == "__main__":
 
     # create a run config for this agent, to run 5 games, send to breezy server
     startData = {
-        "agent": "Sample TPG Agent",
+        "agent": "Magnus (The Red).",
         "size": opts.gameReps
     }
     # tell breezy server to start the run
@@ -257,18 +262,36 @@ if __name__ == "__main__":
     breezyPort = opts.breezyPort
     totalGens = opts.gens
     gameReps = opts.gameReps
-    
-    # set up of the TPG agent
-    trainer = Trainer(actions=range(30), 
-                      teamPopSize=opts.popSize, 
+
+
+    #Set up Magnus to destroy the webway
+    if not path.exists("Tzeentch"):
+        trainer = trainer.loadTrainer("Tzeentch")
+        agents = agent.loadAgent("Magnus")
+        agent = agents.pop()
+        #still need to actually increment this
+        totalGames = agents.IQ
+
+
+    else:
+        trainer = Trainer(actions=range(30),
+                      teamPopSize=opts.popSize,
                       rTeamPopSize=opts.popSize,
                       sourceRange=310)
-    agents = trainer.getAgents()
-    agent = agents.pop()
+        agents = trainer.getAgents()
+        agent = agents.pop()
+        psykerLevel = 0
+
+
     agentScores = []
     curGen = 0
+    psykerLevel += agent.psykerLevel
+
     lastState = None
-    
+
+
+
+
     # create a log file 
     global logName
     timestamp = datetime.datetime.now().strftime("%Y-%m-%d-%H-%M")

@@ -5,6 +5,8 @@ import pickle
 Simplified wrapper around a (root) team for easier interface for user.
 """
 class Agent:
+    global IQ
+    global psykerLevel
 
     """
     Create an agent with a team.
@@ -45,6 +47,10 @@ class Agent:
         self.operationRange = Program.operationRange
         self.destinationRange = Program.destinationRange
         self.sourceRange = Program.sourceRange
+        self.IQ = ourAgent.IQ
+        self.psykerLevel = ourAgent.psykerLevel
+
+
 
         pickle.dump(self, open(fileName, 'wb'))
 
