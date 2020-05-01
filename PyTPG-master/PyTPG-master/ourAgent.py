@@ -9,6 +9,8 @@ import requests
 import datetime
 import numpy as np
 sys.path.append('/src/validation/')
+import os.path
+from os import path
 
 
 """
