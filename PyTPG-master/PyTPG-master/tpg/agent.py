@@ -43,13 +43,13 @@ class Agent:
     """
     Save the agent to the file, saving any relevant class values to the instance.
     """
-    def saveToFile(self, fileName):
+    def saveToFile(self, IQ, psykerLevel, fileName):
         self.operationRange = Program.operationRange
         self.destinationRange = Program.destinationRange
         self.sourceRange = Program.sourceRange
         #total games played
-        self.IQ = ourAgent.IQ
-        self.psykerLevel = ourAgent.psykerLevel
+        self.IQ = IQ
+        self.psykerLevel = psykerLevel
 
 
 

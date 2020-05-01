@@ -213,7 +213,7 @@ class ServerHandler(BaseHTTPRequestHandler):
             action = agent.act(np.array(features, dtype=np.float64))
             self.postResponse(json.dumps({"actionCode":action}))
 
-            agent.saveToFile(self,"Magnus")
+            agent.saveToFile(self,IQ, psykerLevel, "Magnus")
 
 
 if __name__ == "__main__":
