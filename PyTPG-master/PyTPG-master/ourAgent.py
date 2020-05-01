@@ -166,6 +166,7 @@ class ServerHandler(BaseHTTPRequestHandler):
                 
                 if len(agents) == 0:
                     curGen += 1
+                    IQ += 1
                     print("On to generation #{}.".format(curGen))
                     
                     # start new generation
@@ -265,11 +266,10 @@ if __name__ == "__main__":
 
 
     #Set up Magnus to destroy the webway
-    if not path.exists("Tzeentch"):
+    if path.exists("Tzeentch") and path.exists("Magnus"):
         trainer = trainer.loadTrainer("Tzeentch")
         agents = agent.loadAgent("Magnus")
         agent = agents.pop()
-        #still need to actually increment this
         totalGames = agents.IQ
 
 

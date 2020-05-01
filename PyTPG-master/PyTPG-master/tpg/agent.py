@@ -47,6 +47,7 @@ class Agent:
         self.operationRange = Program.operationRange
         self.destinationRange = Program.destinationRange
         self.sourceRange = Program.sourceRange
+        #total games played
         self.IQ = ourAgent.IQ
         self.psykerLevel = ourAgent.psykerLevel
 
