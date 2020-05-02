@@ -6,7 +6,7 @@ Simplified wrapper around a (root) team for easier interface for user.
 """
 class Agent:
     global IQ
-    global psykerLevel
+    #global psykerLevel
 
     """
     Create an agent with a team.
@@ -43,13 +43,13 @@ class Agent:
     """
     Save the agent to the file, saving any relevant class values to the instance.
     """
-    def saveToFile(self, IQ, psykerLevel, fileName):
+    def saveToFile(self, IQ, fileName):
         self.operationRange = Program.operationRange
         self.destinationRange = Program.destinationRange
         self.sourceRange = Program.sourceRange
         #total games played
         self.IQ = IQ
-        self.psykerLevel = psykerLevel
+        #self.psykerLevel = psykerLevel
 
 
 

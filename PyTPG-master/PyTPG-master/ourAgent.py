@@ -213,7 +213,7 @@ class ServerHandler(BaseHTTPRequestHandler):
             action = agent.act(np.array(features, dtype=np.float64))
             self.postResponse(json.dumps({"actionCode":action}))
 
-            agent.saveToFile(self,IQ, psykerLevel, "Magnus")
+            agent.saveToFile(self,IQ, "Magnus")
 
 
 if __name__ == "__main__":
@@ -282,12 +282,12 @@ if __name__ == "__main__":
                       sourceRange=310)
         agents = trainer.getAgents()
         agent = agents.pop()
-        psykerLevel = 0
+        #psykerLevel = 0
 
 
     agentScores = []
     curGen = 0
-    psykerLevel += agent.psykerLevel
+    #psykerLevel += agent.psykerLevel
 
     lastState = None
 
