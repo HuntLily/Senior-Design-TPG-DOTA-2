@@ -102,6 +102,7 @@ class ServerHandler(BaseHTTPRequestHandler):
             global agentScores
             
             print("Game done.")
+            print("comment 3")
             content = self.getContent().decode("utf-8")
             print(content)
             runData = json.loads(content)
@@ -187,7 +188,7 @@ class ServerHandler(BaseHTTPRequestHandler):
                     breezyIp, breezyPort)
                 # create a run config for this agent, to run 5 games
                 startData = {
-                    "agent": "Sample TPG Agent",
+                    "agent": "Magnus (The Red)",
                     "size": gameReps
                 }
                 response = requests.post(url=startUrl, data=json.dumps(startData))
@@ -212,7 +213,7 @@ class ServerHandler(BaseHTTPRequestHandler):
             """
             action = agent.act(np.array(features, dtype=np.float64))
             self.postResponse(json.dumps({"actionCode":action}))
-
+            print("comment 2")
             agent.saveToFile(self,IQ, "Magnus")
 
 
@@ -268,6 +269,7 @@ if __name__ == "__main__":
 
 
     #Set up Magnus to destroy the webway
+    print("Comment 1")
     if path.exists("Tzeentch") and path.exists("Magnus"):
         trainer = trainer.loadTrainer("Tzeentch")
         agents = agent.loadAgent("Magnus")
