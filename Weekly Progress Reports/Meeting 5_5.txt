@@ -1,0 +1,22 @@
+Currently, we are struggling to implement the file saving system. Our unfamiliarity with the python language is hampering
+our abilities somewhat. 
+
+Quick recap, our goals to be completed before Monday:
+* store itself and be packageable
+* it must be able to win consistently
+* Alternatively, show improvement
+* write up a report on the project
+
+What do we need to accomplish in order to achieve the file saving system
+* We need to be able to save a file and load it in python
+* We then need to be able to save *our* file and load it in python
+* We need to know *what* we need to save and load (We think we've got this step already)
+Did we specify an output?
+
+What do we need to do to get the AI to show improvement
+* We can start by running the random and the unedited tpg agents to give some context for how our agent is performing
+	* this should be done during our meetings even when we are coding
+* Getting my laptop to run the agent, even if only to test that the code we are writing is working.
+* We need to test and run many, many rounds, likely a few hundred.
+	* the save system would be helpful for this, although maybe not necessary
+* We need to record every so many games for all 3 agents to show the progress.
