@@ -1,0 +1,15 @@
+--function GetBotNames()
+--	return { "AI-ShadowFiend", "bot", "bot", "bot", "bot" };
+--end
+
+----------------------------------------------------------------------------------------------------
+--function Think()
+--	if ( GetTeam() == TEAM_RADIANT ) then
+--		SelectHero( 1, "npc_dota_hero_nevermore" );
+--		SelectHero( 2, "npc_dota_hero_lina" );
+--		SelectHero( 3, "npc_dota_hero_lina" );
+--		SelectHero( 4, "npc_dota_hero_lina" );
+--		SelectHero( 5, "npc_dota_hero_lina" );	
+--	end		
+--end
+----------------------------------------------------------------------------------------------------
