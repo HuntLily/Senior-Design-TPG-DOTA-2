@@ -106,8 +106,8 @@ class ServerHandler(BaseHTTPRequestHandler):
             
             # save score to list of scores for current agent
             curFitness = self.getFitness(
-                lastState, runData["winner"] == "Radiant")
-            agentScores.append(curFitness, content["deaths"], content["radiantKills"])
+                lastState, runData["winner"] == "Radiant", runData["deaths"], runData["radiantKills"])
+            agentScores.append(curFitness)
             print("Agent scored {}!".format(curFitness))
             
             # webhook to start new game in existing set of games
