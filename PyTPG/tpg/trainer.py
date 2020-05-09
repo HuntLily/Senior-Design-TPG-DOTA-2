@@ -171,7 +171,6 @@ class Trainer:
                 self.elites.append(max([team for team in self.rootTeams],
                                         key=lambda t: t.outcomes[task]))
 
-
         if len(tasks) == 1: # single fitness
             for team in self.rootTeams:
                 team.fitness = team.outcomes[tasks[0]]
