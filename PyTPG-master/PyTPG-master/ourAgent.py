@@ -104,10 +104,10 @@ class ServerHandler(BaseHTTPRequestHandler):
             """
 
             if path.exists("Magnus"):
-                agent.loadAgent("Magnus")
-                IQ += 1
+              agent = agent.loadAgent("Magnus")
+              IQ = agent.IQ + 1
             else:
-                IQ = 0
+              IQ = 0
             global breezyIp
             global breezyPort
 
@@ -302,6 +302,7 @@ if __name__ == "__main__":
         agent = agents.pop()
         agent.saveToFile(IQ, "Magnus")
         #psykerLevel = 0
+        trainer.saveToFile("Teentch")
 
 
     agentScores = []
