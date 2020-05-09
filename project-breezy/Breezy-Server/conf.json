@@ -19,9 +19,9 @@
   },
   "feature.stream.delay": 1500,
   "workshop_addon_id": "1976046474",
-  "bypass.agent.ready.between.games": true,
+  "bypass.agent.ready.between.games": false,
   "run.webhook.prefix": "/run/webhooks/",
   "run.webhook.suffix": "/",
-  "overrideAgent": true,
+  "overrideAgent": false,
   "dotaBetaFolderPath":"C:\\PROGRA~2\\Steam\\steamapps\\common\\DOTA2B~1\\"
 }

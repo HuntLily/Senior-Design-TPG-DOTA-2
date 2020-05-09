@@ -96,7 +96,7 @@ class ServerHandler(BaseHTTPRequestHandler):
                 # create a run config for this agent, to run 5 games
                 startData = {
                     "agent": "Sample Random Agent",
-                    "size": 5
+                    "size": 1
                 }
                 response = requests.post(url=startUrl, data=json.dumps(startData))
                 
