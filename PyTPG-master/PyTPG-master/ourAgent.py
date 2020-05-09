@@ -40,7 +40,7 @@ Arguments for TPG setup.
 # population size
 parser.add_option("-P", "--pop", type="int", dest="popSize", default=200)
 parser.add_option("-g", "--gens", type="int", dest="gens", default=100)
-parser.add_option("-r", "--gameReps", type="int", dest="gameReps", default=2)
+parser.add_option("-r", "--gameReps", type="int", dest="gameReps", default=1)
 
 (opts, args) = parser.parse_args()
 
@@ -103,6 +103,11 @@ class ServerHandler(BaseHTTPRequestHandler):
             Update route is called, game finished.
             """
 
+            if path.exists("Magnus"):
+                agent.loadAgent("Magnus")
+                IQ += 1
+            else:
+                IQ = 0
             global breezyIp
             global breezyPort
 
@@ -110,6 +115,7 @@ class ServerHandler(BaseHTTPRequestHandler):
 
             print("Game done.")
             print("comment 3")
+            agent.saveToFile(self, IQ, "Magnus")
             content = self.getContent().decode("utf-8")
             print(content)
             runData = json.loads(content)
@@ -179,6 +185,8 @@ class ServerHandler(BaseHTTPRequestHandler):
                     curGen += 1
                     IQ += 1
                     print("On to generation #{}.".format(curGen))
+                    agent.saveToFile(self, IQ, "Magnus")
+                    print("Agent saved")
 
                     # start new generation
                     trainer1.evolve(tasks=["dota"])
@@ -221,8 +229,7 @@ class ServerHandler(BaseHTTPRequestHandler):
             """
             action = agent.act(np.array(features, dtype=np.float64))
             self.postResponse(json.dumps({"actionCode":action}))
-            print("comment 2")
-            agent.saveToFile(self,IQ, "Magnus")
+
 
 
 if __name__ == "__main__":
@@ -286,13 +293,16 @@ if __name__ == "__main__":
 
 
     else:
+        IQ = 0
         trainer = Trainer(actions=range(30),
                       teamPopSize=opts.popSize,
                       rTeamPopSize=opts.popSize,
                       sourceRange=310)
         agents = trainer.getAgents()
         agent = agents.pop()
+        agent.saveToFile(IQ, "Magnus")
         #psykerLevel = 0
+
 
     agentScores = []
     curGen = 0
@@ -313,6 +323,7 @@ if __name__ == "__main__":
     # serve until force stop
     while True:
         pass
+
 
 
 
