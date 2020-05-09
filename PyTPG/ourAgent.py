@@ -103,11 +103,6 @@ class ServerHandler(BaseHTTPRequestHandler):
             Update route is called, game finished.
             """
 
-            if path.exists("Magnus"):
-              agent = agent.loadAgent("Magnus")
-              IQ = agent.IQ + 1
-            else:
-              IQ = 0
             global breezyIp
             global breezyPort
 
@@ -115,15 +110,16 @@ class ServerHandler(BaseHTTPRequestHandler):
 
             print("Game done.")
             print("comment 3")
-            agent.saveToFile(self, IQ, "Magnus")
+            agent.saveToFile("Magnus")
+            print("agent saved line 114")
             content = self.getContent().decode("utf-8")
             print(content)
             runData = json.loads(content)
 
             # save score to list of scores for current agent
             curFitness = self.getFitness(
-                lastState, runData["winner"] == "Radiant")
-            agentScores.append(curFitness, content["deaths"], content["radiantKills"])
+                lastState, runData["winner"] == "Radiant", runData["deaths"], runData["radiantKills"])
+            agentScores.append(curFitness)
             print("Agent scored {}!".format(curFitness))
 
             # webhook to start new game in existing set of games
@@ -185,8 +181,8 @@ class ServerHandler(BaseHTTPRequestHandler):
                     curGen += 1
                     IQ += 1
                     print("On to generation #{}.".format(curGen))
-                    agent.saveToFile(self, IQ, "Magnus")
-                    print("Agent saved")
+                    agent.saveToFile("Magnus")
+                    print("Agent saved line 184")
 
                     # start new generation
                     trainer1.evolve(tasks=["dota"])
@@ -290,6 +286,7 @@ if __name__ == "__main__":
         agents = agent.loadAgent("Magnus")
         agent = agents.pop()
         totalGames = agents.IQ
+        print("yo as far as I understand the load was successful?")
 
 
     else:
@@ -300,7 +297,7 @@ if __name__ == "__main__":
                       sourceRange=310)
         agents = trainer.getAgents()
         agent = agents.pop()
-        agent.saveToFile(IQ, "Magnus")
+        agent.saveToFile("Magnus")
         #psykerLevel = 0
         trainer.saveToFile("Teentch")
 
