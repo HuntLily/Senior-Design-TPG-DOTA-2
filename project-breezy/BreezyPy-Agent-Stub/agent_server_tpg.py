@@ -23,7 +23,7 @@ Arguments for TPG setup.
 # population size
 parser.add_option("-P", "--pop", type="int", dest="popSize", default=200)
 parser.add_option("-g", "--gens", type="int", dest="gens", default=100)
-parser.add_option("-r", "--gameReps", type="int", dest="gameReps", default=3)
+parser.add_option("-r", "--gameReps", type="int", dest="gameReps", default=2)
 
 (opts, args) = parser.parse_args()
 
@@ -37,6 +37,7 @@ class ServerHandler(BaseHTTPRequestHandler):
     Get the fitness from the final game state.
     """
     def getFitness(self, state, win):
+        print("comment 1")
         # incomplete, missing kills and not dead bonus
         return 10*state[24] + 15*state[25] + state[23] + 2000*win
 
@@ -84,7 +85,8 @@ class ServerHandler(BaseHTTPRequestHandler):
             global breezyPort
             
             global agentScores
-            
+
+            print("comment 2")
             print("Game done.")
             content = self.getContent().decode("utf-8")
             print(content)

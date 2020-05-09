@@ -52,6 +52,7 @@ class ServerHandler(BaseHTTPRequestHandler):
     """
     def do_POST(self):
         print(self.path)
+        print("comment 1")
         
         if self.path == "/update": 
             """
@@ -96,7 +97,7 @@ class ServerHandler(BaseHTTPRequestHandler):
                 # create a run config for this agent, to run 5 games
                 startData = {
                     "agent": "Sample Random Agent",
-                    "size": 5
+                    "size": 2
                 }
                 response = requests.post(url=startUrl, data=json.dumps(startData))
                 

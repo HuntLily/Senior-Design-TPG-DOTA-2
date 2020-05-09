@@ -37,7 +37,7 @@ Arguments for TPG setup.
 # population size
 parser.add_option("-P", "--pop", type="int", dest="popSize", default=200)
 parser.add_option("-g", "--gens", type="int", dest="gens", default=100)
-parser.add_option("-r", "--gameReps", type="int", dest="gameReps", default=3)
+parser.add_option("-r", "--gameReps", type="int", dest="gameReps", default=2)
 
 (opts, args) = parser.parse_args()
 
@@ -51,6 +51,7 @@ class ServerHandler(BaseHTTPRequestHandler):
     Get the fitness from the final game state. add a parameter to get death and kills
     """
     def getFitness(self, state, win, deaths, kills):
+        print("comment 7")
         # last hits, denies, net worth, difference in tower hp%, difference in hero hp%, level diff, time, win
         return 10*state[24] + 15*state[25] + state[23] + (state[58]/state[59] - state[64]/state[65]) * 200 + \
                (state[2]/state[3] - state[32]/state[33]) * 500 + (state[1]-state[31])*100 + (1/(state[56]-1200)) * \
@@ -60,6 +61,7 @@ class ServerHandler(BaseHTTPRequestHandler):
     Helper function to get content passed with http request.
     """
     def getContent(self):
+        print("comment 8")
         cLen = int(self.headers["Content-Length"])
         return self.rfile.read(cLen)
 
@@ -119,7 +121,7 @@ class ServerHandler(BaseHTTPRequestHandler):
                 A webhook was sent to the agent to start a new game in the current
                 set of games.
                 """
-                
+                print("comment 5")
                 print("Starting rep #{}.".format(runData["progress"]+1))
                 
                 webhookUrl = "http://{}:{}{}".format(
@@ -150,6 +152,7 @@ class ServerHandler(BaseHTTPRequestHandler):
                 """
                 Prepare next TPG agent (or generation if required).
                 """
+                print("comment 9")
                 
                 if curGen == totalGens:
                     print("Done Training.")
@@ -158,6 +161,7 @@ class ServerHandler(BaseHTTPRequestHandler):
                 
                 
                 # reward score to current agent
+                print("comment: 4")
                 fitness = sum(agentScores)/gameReps
                 agent.reward(fitness, "dota")
                 print("Agent done. Fitness: {}.".format(fitness))
@@ -286,7 +290,6 @@ if __name__ == "__main__":
         agent = agents.pop()
         #psykerLevel = 0
 
-
     agentScores = []
     curGen = 0
     #psykerLevel += agent.psykerLevel
@@ -304,5 +307,6 @@ if __name__ == "__main__":
     # serve until force stop
     while True:
         pass
-    
+
+
 
