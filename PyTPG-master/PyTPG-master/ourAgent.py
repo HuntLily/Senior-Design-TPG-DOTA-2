@@ -12,6 +12,9 @@ sys.path.append('/src/validation/')
 import os.path
 from os import path
 
+global pyskerLevel
+global IQ
+
 
 """
 lines to change:
@@ -46,6 +49,8 @@ parser.add_option("-r", "--gameReps", type="int", dest="gameReps", default=2)
 Handles HTTP requests from the dota server.
 """
 class ServerHandler(BaseHTTPRequestHandler):
+
+
 
     """
     Get the fitness from the final game state. add a parameter to get death and kills
@@ -88,33 +93,33 @@ class ServerHandler(BaseHTTPRequestHandler):
     POST used for getting features and returning action.
     """
     def do_POST(self):
-    
+
         # agent used in either path
         global agent
         global lastState
-        
-        if self.path == "/update": 
+
+        if self.path == "/update":
             """
             Update route is called, game finished.
             """
-            
+
             global breezyIp
             global breezyPort
-            
+
             global agentScores
-            
+
             print("Game done.")
             print("comment 3")
             content = self.getContent().decode("utf-8")
             print(content)
             runData = json.loads(content)
-            
+
             # save score to list of scores for current agent
             curFitness = self.getFitness(
                 lastState, runData["winner"] == "Radiant")
             agentScores.append(curFitness, content["deaths"], content["radiantKills"])
             print("Agent scored {}!".format(curFitness))
-            
+
             # webhook to start new game in existing set of games
             if "webhook" in runData:
                 """
@@ -123,13 +128,13 @@ class ServerHandler(BaseHTTPRequestHandler):
                 """
                 print("comment 5")
                 print("Starting rep #{}.".format(runData["progress"]+1))
-                
+
                 webhookUrl = "http://{}:{}{}".format(
                     breezyIp, breezyPort, runData["webhook"])
-                
+
                 # call webhook to trigger new game
                 response = requests.get(url=webhookUrl)
-                
+
             # otherwise start new set of games, or end session
             else:
                 """
@@ -139,54 +144,53 @@ class ServerHandler(BaseHTTPRequestHandler):
                 In here would probably be where you put the code to ready a new agent
                 (update NN weights, evolutions, next agent in current gen. etc.).
                 """
-                
+
                 global trainer
                 global agents
                 global totalGens
                 global gameReps
                 global curGen
                 global logName
-                global pyskerLevel
-                global IQ
-                
+
+
                 """
                 Prepare next TPG agent (or generation if required).
                 """
                 print("comment 9")
-                
+
                 if curGen == totalGens:
                     print("Done Training.")
                     return
-                    
-                
-                
+
+
+
                 # reward score to current agent
                 print("comment: 4")
                 fitness = sum(agentScores)/gameReps
                 agent.reward(fitness, "dota")
                 print("Agent done. Fitness: {}.".format(fitness))
                 agentScores = []
-                
+
                 # log the current score
                 with open(logName, "a") as f:
                     f.write("{},{}".format(curGen, fitness))
-                
+
                 if len(agents) == 0:
                     curGen += 1
                     IQ += 1
                     print("On to generation #{}.".format(curGen))
-                    
+
                     # start new generation
                     trainer1.evolve(tasks=["dota"])
                     # get new agents
                     agents = trainer.getAgents(skipTasks=["dota"])
-                    
-                    
+
+
                 # get next agent
                 agent = agents.pop()
-                
-                
-                
+
+
+
                 # build url to dota 2 breezy server
                 startUrl = "http://{}:{}/run/".format(
                     breezyIp, breezyPort)
@@ -196,22 +200,22 @@ class ServerHandler(BaseHTTPRequestHandler):
                     "size": gameReps
                 }
                 response = requests.post(url=startUrl, data=json.dumps(startData))
-                
-                
+
+
             # send whatever to server
             self.postResponse(json.dumps({"fitness":42}))
-            
+
         else: # relay path gives features from current game to agent
             """
             Relay route is called, gives features from the game for the agent.
             """
-            
+
             # get data as json, then save to list
             content = self.getContent().decode("utf-8")
             features = json.loads(content)
-            
+
             lastState = features # save last state to calculate fitness at end
-        
+
             """
             Agent code to determine action from features goes here.
             """
@@ -295,6 +299,8 @@ if __name__ == "__main__":
     #psykerLevel += agent.psykerLevel
 
     lastState = None
+
+
 
 
 
