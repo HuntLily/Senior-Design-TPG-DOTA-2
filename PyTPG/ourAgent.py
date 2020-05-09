@@ -9,6 +9,11 @@ import requests
 import datetime
 import numpy as np
 sys.path.append('/src/validation/')
+import os.path
+from os import path
+
+global pyskerLevel
+global IQ
 
 
 """
@@ -35,7 +40,7 @@ Arguments for TPG setup.
 # population size
 parser.add_option("-P", "--pop", type="int", dest="popSize", default=200)
 parser.add_option("-g", "--gens", type="int", dest="gens", default=100)
-parser.add_option("-r", "--gameReps", type="int", dest="gameReps", default=10)
+parser.add_option("-r", "--gameReps", type="int", dest="gameReps", default=1)
 
 (opts, args) = parser.parse_args()
 
@@ -45,10 +50,13 @@ Handles HTTP requests from the dota server.
 """
 class ServerHandler(BaseHTTPRequestHandler):
 
+
+
     """
     Get the fitness from the final game state. add a parameter to get death and kills
     """
     def getFitness(self, state, win, deaths, kills):
+        print("comment 7")
         # last hits, denies, net worth, difference in tower hp%, difference in hero hp%, level diff, time, win
         return 10*state[24] + 15*state[25] + state[23] + (state[58]/state[59] - state[64]/state[65]) * 200 + \
                (state[2]/state[3] - state[32]/state[33]) * 500 + (state[1]-state[31])*100 + (1/(state[56]-1200)) * \
@@ -58,6 +66,7 @@ class ServerHandler(BaseHTTPRequestHandler):
     Helper function to get content passed with http request.
     """
     def getContent(self):
+        print("comment 8")
         cLen = int(self.headers["Content-Length"])
         return self.rfile.read(cLen)
 
@@ -84,47 +93,54 @@ class ServerHandler(BaseHTTPRequestHandler):
     POST used for getting features and returning action.
     """
     def do_POST(self):
-    
+
         # agent used in either path
         global agent
         global lastState
-        
-        if self.path == "/update": 
+
+        if self.path == "/update":
             """
             Update route is called, game finished.
             """
-            
+
+            if path.exists("Magnus"):
+              agent = agent.loadAgent("Magnus")
+              IQ = agent.IQ + 1
+            else:
+              IQ = 0
             global breezyIp
             global breezyPort
-            
+
             global agentScores
-            
+
             print("Game done.")
+            print("comment 3")
+            agent.saveToFile(self, IQ, "Magnus")
             content = self.getContent().decode("utf-8")
             print(content)
             runData = json.loads(content)
-            
+
             # save score to list of scores for current agent
             curFitness = self.getFitness(
                 lastState, runData["winner"] == "Radiant")
             agentScores.append(curFitness, content["deaths"], content["radiantKills"])
             print("Agent scored {}!".format(curFitness))
-            
+
             # webhook to start new game in existing set of games
             if "webhook" in runData:
                 """
                 A webhook was sent to the agent to start a new game in the current
                 set of games.
                 """
-                
+                print("comment 5")
                 print("Starting rep #{}.".format(runData["progress"]+1))
-                
+
                 webhookUrl = "http://{}:{}{}".format(
                     breezyIp, breezyPort, runData["webhook"])
-                
+
                 # call webhook to trigger new game
                 response = requests.get(url=webhookUrl)
-                
+
             # otherwise start new set of games, or end session
             else:
                 """
@@ -134,79 +150,87 @@ class ServerHandler(BaseHTTPRequestHandler):
                 In here would probably be where you put the code to ready a new agent
                 (update NN weights, evolutions, next agent in current gen. etc.).
                 """
-                
+
                 global trainer
                 global agents
                 global totalGens
                 global gameReps
                 global curGen
                 global logName
-                
+
+
                 """
                 Prepare next TPG agent (or generation if required).
                 """
-                
+                print("comment 9")
+
                 if curGen == totalGens:
                     print("Done Training.")
                     return
-                    
-                
-                
+
+
+
                 # reward score to current agent
+                print("comment: 4")
                 fitness = sum(agentScores)/gameReps
                 agent.reward(fitness, "dota")
                 print("Agent done. Fitness: {}.".format(fitness))
                 agentScores = []
-                
+
                 # log the current score
                 with open(logName, "a") as f:
                     f.write("{},{}".format(curGen, fitness))
-                
+
                 if len(agents) == 0:
                     curGen += 1
+                    IQ += 1
                     print("On to generation #{}.".format(curGen))
-                    
+                    agent.saveToFile(self, IQ, "Magnus")
+                    print("Agent saved")
+
                     # start new generation
                     trainer1.evolve(tasks=["dota"])
                     # get new agents
                     agents = trainer.getAgents(skipTasks=["dota"])
-                    
-                    
+
+
                 # get next agent
                 agent = agents.pop()
-                
-                
-                
+
+
+
                 # build url to dota 2 breezy server
                 startUrl = "http://{}:{}/run/".format(
                     breezyIp, breezyPort)
                 # create a run config for this agent, to run 5 games
                 startData = {
-                    "agent": "Sample TPG Agent",
+                    "agent": "Magnus (The Red)",
                     "size": gameReps
                 }
                 response = requests.post(url=startUrl, data=json.dumps(startData))
-                
-                
+
+
             # send whatever to server
             self.postResponse(json.dumps({"fitness":42}))
-            
+
         else: # relay path gives features from current game to agent
             """
             Relay route is called, gives features from the game for the agent.
             """
-            
+
             # get data as json, then save to list
             content = self.getContent().decode("utf-8")
             features = json.loads(content)
-            
+
             lastState = features # save last state to calculate fitness at end
-        
+
             """
             Agent code to determine action from features goes here.
             """
             action = agent.act(np.array(features, dtype=np.float64))
             self.postResponse(json.dumps({"actionCode":action}))
+
+
 
 if __name__ == "__main__":
     """
@@ -224,7 +248,7 @@ if __name__ == "__main__":
 
     # create a run config for this agent, to run 5 games, send to breezy server
     startData = {
-        "agent": "Sample TPG Agent",
+        "agent": "Magnus (The Red).",
         "size": opts.gameReps
     }
     # tell breezy server to start the run
@@ -257,18 +281,41 @@ if __name__ == "__main__":
     breezyPort = opts.breezyPort
     totalGens = opts.gens
     gameReps = opts.gameReps
-    
-    # set up of the TPG agent
-    trainer = Trainer(actions=range(30), 
-                      teamPopSize=opts.popSize, 
+
+
+    #Set up Magnus to destroy the webway
+    print("Comment 1")
+    if path.exists("Tzeentch") and path.exists("Magnus"):
+        trainer = trainer.loadTrainer("Tzeentch")
+        agents = agent.loadAgent("Magnus")
+        agent = agents.pop()
+        totalGames = agents.IQ
+
+
+    else:
+        IQ = 0
+        trainer = Trainer(actions=range(30),
+                      teamPopSize=opts.popSize,
                       rTeamPopSize=opts.popSize,
                       sourceRange=310)
-    agents = trainer.getAgents()
-    agent = agents.pop()
+        agents = trainer.getAgents()
+        agent = agents.pop()
+        agent.saveToFile(IQ, "Magnus")
+        #psykerLevel = 0
+        trainer.saveToFile("Teentch")
+
+
     agentScores = []
     curGen = 0
+    #psykerLevel += agent.psykerLevel
+
     lastState = None
-    
+
+
+
+
+
+
     # create a log file 
     global logName
     timestamp = datetime.datetime.now().strftime("%Y-%m-%d-%H-%M")
@@ -277,5 +324,7 @@ if __name__ == "__main__":
     # serve until force stop
     while True:
         pass
-    
+
+
+
 
