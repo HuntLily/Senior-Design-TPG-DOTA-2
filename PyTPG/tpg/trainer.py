@@ -421,17 +421,17 @@ class Trainer:
 
         pickle.dump(self, open(fileName, 'wb'))
 
-"""
-Load some trainer from the file, returning it and repopulate class values.
-"""
-def loadTrainer(fileName):
-    trainer = pickle.load(open(fileName, 'rb'))
+    """
+    Load some trainer from the file, returning it and repopulate class values.
+    """
+    def loadTrainer(fileName):
+        trainer = pickle.load(open(fileName, 'rb'))
 
-    Team.idCount = trainer.teamIdCount
-    Learner.idCount = trainer.learnerIdCount
-    Program.idCount = trainer.programIdCount
-    Program.operationRange = trainer.operationRange
-    Program.destinationRange = trainer.destinationRange
-    Program.sourceRange = trainer.sourceRange
+        Team.idCount = trainer.teamIdCount
+        Learner.idCount = trainer.learnerIdCount
+        Program.idCount = trainer.programIdCount
+        Program.operationRange = trainer.operationRange
+        Program.destinationRange = trainer.destinationRange
+        Program.sourceRange = trainer.sourceRange
 
-    return trainer
+        return trainer
