@@ -299,7 +299,7 @@ if __name__ == "__main__":
         agent = agents.pop()
         agent.saveToFile("Magnus")
         #psykerLevel = 0
-        trainer.saveToFile("Teentch")
+        trainer.saveToFile("Tzeentch")
 
 
     agentScores = []
