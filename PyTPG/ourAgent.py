@@ -59,8 +59,8 @@ class ServerHandler(BaseHTTPRequestHandler):
         print("comment 7")
         # last hits, denies, difference in tower hp%, level diff, time, win
         return 10*state[24] + 15*state[25] + (state[58]/state[59] - state[64]/state[65]) * 200 + \
-               (state[1]-state[31])*25 + 1000/(state[56]) + \
-               2000*win + 500*kills + (500 - (250 * deaths))
+               (state[1]-state[31])*10 + 1000/(state[56]) + \
+               2000*win + 500*kills + win*(500 - (250 * deaths))
 
     """
     Helper function to get content passed with http request.
