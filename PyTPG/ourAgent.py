@@ -179,7 +179,6 @@ class ServerHandler(BaseHTTPRequestHandler):
 
                 if len(agents) == 0:
                     curGen += 1
-                    IQ += 1
                     print("On to generation #{}.".format(curGen))
                     agent.saveToFile("Magnus")
                     print("Agent saved line 184")
@@ -282,10 +281,11 @@ if __name__ == "__main__":
     #Set up Magnus to destroy the webway
     print("Comment 1")
     if path.exists("Tzeentch") and path.exists("Magnus"):
+        trainer = Trainer
         trainer = trainer.loadTrainer("Tzeentch")
-        agents = agent.loadAgent("Magnus")
-        agent = agents.pop()
-        totalGames = agents.IQ
+        agents = trainer.getAgents()
+        agent = Agent
+        agent = agent.loadAgent("Magnus")
         print("yo as far as I understand the load was successful?")
 
 
