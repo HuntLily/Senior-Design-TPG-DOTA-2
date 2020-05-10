@@ -40,7 +40,7 @@ Arguments for TPG setup.
 # population size
 parser.add_option("-P", "--pop", type="int", dest="popSize", default=200)
 parser.add_option("-g", "--gens", type="int", dest="gens", default=100)
-parser.add_option("-r", "--gameReps", type="int", dest="gameReps", default=1)
+parser.add_option("-r", "--gameReps", type="int", dest="gameReps", default=3)
 
 (opts, args) = parser.parse_args()
 
@@ -57,10 +57,10 @@ class ServerHandler(BaseHTTPRequestHandler):
     """
     def getFitness(self, state, win, deaths, kills):
         print("comment 7")
-        # last hits, denies, net worth, difference in tower hp%, difference in hero hp%, level diff, time, win
-        return 10*state[24] + 15*state[25] + state[23] + (state[58]/state[59] - state[64]/state[65]) * 200 + \
-               (state[2]/state[3] - state[32]/state[33]) * 500 + (state[1]-state[31])*100 + (1/(state[56]-1200)) * \
-               1000 + 2000*win + 500*kills + (500 - (250 * deaths))
+        # last hits, denies, net worth, difference in tower hp%, level diff, time, win
+        return 10*state[24] + 15*state[25] + .5*state[23] + (state[58]/state[59] - state[64]/state[65]) * 200 + \
+               (state[1]-state[31])*50 + (1/(state[56]-1200)) * 1000 + \
+               2000*win + 500*kills + (500 - (250 * deaths))
 
     """
     Helper function to get content passed with http request.
