@@ -48,14 +48,14 @@ class Agent:
 
         pickle.dump(self, open(fileName, 'wb'))
 
-"""
-Load some agent from the file, returning it and repopulate class values.
-"""
-def loadAgent(fileName):
-    agent = pickle.load(open(fileName, 'rb'))
+    """
+    Load some agent from the file, returning it and repopulate class values.
+    """
+    def loadAgent(fileName):
+        agent = pickle.load(open(fileName, 'rb'))
 
-    Program.operationRange = agent.operationRange
-    Program.destinationRange = agent.destinationRange
-    Program.sourceRange = agent.sourceRange
+        Program.operationRange = agent.operationRange
+        Program.destinationRange = agent.destinationRange
+        Program.sourceRange = agent.sourceRange
 
-    return agent
+        return agent
